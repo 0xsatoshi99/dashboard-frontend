@@ -2,17 +2,10 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "./_components/Header";
-import { APP_SONIX } from "@/config/env";
+import { APP_JA } from "@/config/env";
 import axiosInstance from "@/config/axios";
 import useAppDispatch from "@/hooks/global/useAppDispatch";
 import { setColdkeys, setTaoPrice, setTeamColdkeys } from "@/store/slices/global.slice";
-import {
-  setOblivusStatus,
-  setOpenAIStatus,
-  setVPSStatus,
-  setDataCrunchStatus,
-  setShadeformStatus,
-} from "@/store/slices/asset.slice";
 
 const RootTemplate = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -30,25 +23,13 @@ const RootTemplate = ({ children }: PropsWithChildren) => {
       const taoPrice = await axiosInstance.get("/api/asset/tao/price");
       dispatch(setTaoPrice(taoPrice.data));
 
-      const openai = await axiosInstance.get("/api/asset/openai");
-      dispatch(setOpenAIStatus(openai.data));
-      const vps = await axiosInstance.get("/api/asset/vps");
-      dispatch(setVPSStatus(vps.data));
-      const gpu = await axiosInstance.get("/api/asset/oblivus");
-      dispatch(setOblivusStatus(gpu.data));
-
-      const datacrunch = await axiosInstance.get("/api/asset/datacrunch");
-      dispatch(setDataCrunchStatus(datacrunch.data));
-
-      const shadeform = await axiosInstance.get("/api/asset/shadeform");
-      dispatch(setShadeformStatus(shadeform.data));
     } catch (error) {}
   };
 
   useEffect(() => {
     setIsClient(true);
-    const sonix = localStorage.getItem("TAO-SONIX");
-    if (!sonix || sonix !== APP_SONIX) {
+    const japd = localStorage.getItem("TAO-JA");
+    if (!japd || japd !== APP_JA) {
       router.push("/");
     }
   }, [router]);

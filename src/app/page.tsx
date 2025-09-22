@@ -1,5 +1,5 @@
 "use client";
-import { APP_SONIX } from "@/config/env";
+import { APP_JA } from "@/config/env";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -11,8 +11,8 @@ const Main = () => {
 
   const handleLogin = async () => {
     try {
-      if (sonix !== APP_SONIX) throw "error";
-      localStorage.setItem("TAO-SONIX", sonix);
+      if (sonix !== APP_JA) throw "error";
+      localStorage.setItem("TAO-JA", sonix);
       toast.success("Login Success");
       router.push("/wallets");
     } catch (error) {

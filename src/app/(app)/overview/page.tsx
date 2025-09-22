@@ -87,7 +87,6 @@ const Overview = () => {
               <th onClick={() => setSort("pool")} className={sort === "pool" ? "!text-white" : "cursor-pointer"}>
                 Pool
               </th>
-              <th className="">Reg</th>
               <th onClick={() => setSort("regcost")} className={sort === "regcost" ? "!text-white" : "cursor-pointer"}>
                 Reg.Cost
               </th>
@@ -156,7 +155,6 @@ const Overview = () => {
                       {subnet.pool.unit}
                       {(subnet.pool.rao / 10 ** 9).toLocaleString()}
                     </td>
-                    <td>{subnet.reg_allowed ? "🟢" : "🔴"}</td>
                     <td
                       className={
                         subnet.reg_fee.rao > 0.5 * 10 ** 9

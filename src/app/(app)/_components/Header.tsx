@@ -18,7 +18,6 @@ const MENU_ITEMS = [
 const Header = () => {
   const pathname = usePathname();
   const { taoPrice } = useAppSelector((state) => state.global);
-  const { vps, oblivus, datacrunch, shadeform } = useAppSelector((state) => state.asset);
   const restartServer = async () => {
     const response = await axiosInstance.get("/api/restart")
     if (response.status === 200) {
@@ -44,12 +43,6 @@ const Header = () => {
             >
               <Icon icon={item.icon} className="text-20" />
               {item.text}
-              {item.link === "/asset" &&
-                // openai.find((i) => i.total_available < 10) ||
-                (vps.find((i) => new Date(i.expire).getTime() < Date.now() + 1000 * 60 * 60 * 24 * 5) ||
-                  oblivus?.credit < 50 ||
-                  datacrunch?.balance < 50 ||
-                  shadeform?.balance < 50) && <div className="bg-red-400 w-8 h-8 rounded-full ml-auto"></div>}
             </Link>
           </React.Fragment>
         ))}
